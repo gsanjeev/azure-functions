@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "FUNCTIONS_EXTENSION_VERSION": "~3",
+    "AzureWebJobsSecretStorageType": "files",
+    "WEBSITE_RUN_FROM_PACKAGE": "1"
+  },
+  "ConnectionStrings": {}
+}
