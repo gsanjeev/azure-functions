@@ -100,27 +100,27 @@ public class MultiPartCVSController {
                 context.getLogger().info("zipped file contents are " + baos.toString());
 
                 //====================================================================
-                InputStream inputStream = new ByteArrayInputStream(baos.toString().getBytes());
+                InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
 
                 //InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
                 ZipInputStream zis = new ZipInputStream(inputStream);
                 ZipEntry zipEntry = zis.getNextEntry();
                 System.out.println("zip filename is " + zipEntry.getName());
                 // write file content
-                ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+                ByteArrayOutputStream baosUnZipped = new ByteArrayOutputStream();
 
                 byte[] buffer = new byte[1024];
                 int len;
                 while ((len = zis.read(buffer)) > 0) {
-                    baos1.write(buffer, 0, len);
+                    baosUnZipped.write(buffer, 0, len);
                 }
                 zis.closeEntry();
                 zis.close();
-                System.out.println("baos1 is " + baos1.toString());
+                System.out.println("baosUnZipped is " + baosUnZipped.toString());
                 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
                 try (
-                        Reader reader = new StringReader(baos1.toString());
+                        Reader reader = new StringReader(baosUnZipped.toString());
                         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                                 .withFirstRecordAsHeader()
                                 .withIgnoreHeaderCase()
